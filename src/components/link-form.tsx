@@ -20,7 +20,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { AutoPasteButton } from '@/components/auto-paste-button';
 import { LoadingDots } from '@/components/loading-dots';
 
-type ApiResponse = {
+type ShortUrlResponse = {
   shortUrl: string;
 };
 
@@ -48,7 +48,7 @@ export const LinkForm = () => {
         return;
       }
 
-      const { shortUrl } = await fetchWrapper<ApiResponse>('/api/short', {
+      const { shortUrl } = await fetchWrapper<ShortUrlResponse>('/api/short', {
         method: 'POST',
         body: JSON.stringify(values),
       });
