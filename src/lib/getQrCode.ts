@@ -1,16 +1,6 @@
 import { toDataURL, type QRCodeToDataURLOptions } from 'qrcode';
 
-const options: QRCodeToDataURLOptions = {
-  width: 36,
-  margin: 2,
-  type: 'image/webp',
-  color: {
-    light: '#000000',
-    dark: '#C9CECD',
-  },
-};
-
-export const getQrCode = (value: string) => {
+export const getQrCode = (value: string, options: QRCodeToDataURLOptions) => {
   let qrValue: string = '';
 
   toDataURL(value, options, (err, url) => {
