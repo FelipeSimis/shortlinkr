@@ -24,7 +24,7 @@ export const Navbar = () => {
             <Skeleton className="h-[32px] w-[32px] rounded-full" />
           </ClerkLoading>
 
-          <UserButton />
+          <UserButton afterSignOutUrl="/" />
         </SignedIn>
 
         <SignedOut>
