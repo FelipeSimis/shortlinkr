@@ -11,6 +11,11 @@ import { formatDate } from '@/lib/utils';
 import { CopyButton } from '@/components/copy-button';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '@/components/ui/hover-card';
 import { Actions } from './actions';
 
 const QRCode = dynamic(() => import('@/components/qr-code'), {
@@ -37,7 +42,7 @@ export const columns: ColumnDef<URLs>[] = [
           href={`http://${row.getValue('shortUrl')}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="max-w-[180px] flex-1 hover:underline"
+          className="max-w-[180px] flex-1 truncate hover:underline"
         >
           {row.getValue('shortUrl')}
         </Link>
@@ -68,7 +73,17 @@ export const columns: ColumnDef<URLs>[] = [
   {
     accessorKey: 'qrCode',
     header: 'QR Code',
-    cell: ({ row }) => <QRCode value={row.getValue('shortUrl')} />,
+    cell: ({ row }) => (
+      <HoverCard>
+        <HoverCardTrigger>
+          <QRCode value={row.getValue('shortUrl')} />
+        </HoverCardTrigger>
+
+        <HoverCardContent>
+          <QRCode value={row.getValue('shortUrl')} width={128} height={128} />
+        </HoverCardContent>
+      </HoverCard>
+    ),
   },
   {
     accessorKey: 'clicks',
