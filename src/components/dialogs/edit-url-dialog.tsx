@@ -29,7 +29,7 @@ export const EditUrlDialog = ({
   const [isActive, setIsActive] = useState(linkStatus);
 
   const toggleLinkStatus = () => {
-    setIsActive(!isActive);
+    setIsActive(prev => !prev);
   };
 
   const closeDialog = () => {
