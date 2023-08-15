@@ -1,34 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ShortLinkr
+
+ShortLinkr is a user-friendly URL shortener that allows you to transform long web addresses into concise, shareable URLs. Simplify sharing across social media, emails, and messaging apps with ease. Try it now and streamline your links!
+
+![Initial page](../assets/screenshots/demo.png)
+
+## Features
+
+- Convert long URLs into short, easy-to-share links.
+- User-friendly interface for quick link generation.
+- OAuth authentication with Google and GitHub
+
+## Prerequisites
+
+Before running the application, make sure you have the following installed:
+
+- Node.js (v16 or higher)
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+   ```bash
+    git clone https://github.com/FelipeSimis/shortlinkr.git
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project directory:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+    cd shortlinkr
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Install dependencies:
 
-## Learn More
+   ```bash
+    yarn
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Set up environment variables:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   - Create a `.env` file in the project root.
+   - Define the required environment variables in the `.env` file. Here's an example:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+     ```
+     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=YOUR_CLERK_PUBLISHABLE_KEY
+     CLERK_SECRET_KEY=YOUR_CLERK_SECRET_KEY
 
-## Deploy on Vercel
+     NEXT_PUBLIC_BASE_URL=YOUR_BASE_URL
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+     DATABASE_URL=YOUR_DATABASE_URL
+     ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+5. Run the development server:
+
+   ```bash
+    yarn dev
+   ```
+
+6. Open your browser and navigate to `http://localhost:3000` to access the application.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+This project was built using various open-source libraries, frameworks, and APIs. Special thanks to the developers and contributors of the following technologies:
+
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Clerk](https://clerk.com/)
+- [Shadcn](https://ui.shadcn.com/)
+- [React Hook Form](https://react-hook-form.com/)
+- [Prisma](https://prisma.io/)
+- [Zod](https://github.com/colinhacks/zod)
+
+## Demo
+
+[Live Demo](https://shortlinkr.vercel.app)
