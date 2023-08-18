@@ -10,9 +10,13 @@ type PageParams = {
 };
 
 const UrlIdPage = async ({ params: { urlId } }: PageParams) => {
-  const { shortUrl, isActive } = await getUrlInfo(urlId);
+  const { shortUrl, isActive, expirationDate } = await getUrlInfo(urlId);
 
-  if (!shortUrl || !isActive) {
+  if (
+    !shortUrl ||
+    !isActive ||
+    (expirationDate && expirationDate < new Date())
+  ) {
     return redirect('/');
   }
 
