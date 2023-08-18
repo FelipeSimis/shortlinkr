@@ -86,6 +86,17 @@ export const columns: ColumnDef<URLs>[] = [
     ),
   },
   {
+    accessorKey: 'expirationDate',
+    header: 'Expiration Date',
+    cell: ({ row }) => (
+      <span>
+        {row.getValue('expirationDate')
+          ? formatDate(row.getValue('expirationDate'))
+          : 'Not defined'}
+      </span>
+    ),
+  },
+  {
     accessorKey: 'clicks',
     header: 'Clicks',
   },
@@ -130,6 +141,7 @@ export const columns: ColumnDef<URLs>[] = [
       <Actions
         linkId={row.getValue('actions')}
         linkStatus={row.getValue('isActive')}
+        linkExpirationDate={row.getValue('expirationDate')}
       />
     ),
   },
