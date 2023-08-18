@@ -8,11 +8,13 @@ export const getUrlInfo = async (urlId: string) => {
     select: {
       shortUrl: true,
       isActive: true,
+      expirationDate: true,
     },
   });
 
   return {
     shortUrl: url?.shortUrl,
     isActive: url?.isActive,
+    expirationDate: url?.expirationDate,
   };
 };
