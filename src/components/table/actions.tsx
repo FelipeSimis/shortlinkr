@@ -9,6 +9,7 @@ import { handleDeleteLink } from '@/actions/handleDeleteLink';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { LoadingDots } from '@/components/loading-dots';
+import type { ConfirmationButtonProps } from '@/components/dialogs/edit-url-dialog';
 
 const DeleteUrlDialog = dynamic(
   () =>
@@ -35,22 +36,56 @@ const EditUrlDialog = dynamic(
 type ActionsProps = {
   linkId: string;
   linkStatus: boolean;
+  linkExpirationDate: Date | undefined;
 };
 
-export const Actions = ({ linkId, linkStatus }: ActionsProps) => {
+export const Actions = ({
+  linkId,
+  linkStatus,
+  linkExpirationDate,
+}: ActionsProps) => {
   const [isPending, startTransition] = useTransition();
+
+  const handleEdit = ({
+    isActive,
+    expirationDate,
+    closeDialog,
+  }: ConfirmationButtonProps) => {
+    startTransition(() => {
+      handleEditLink({
+        linkId,
+        linkStatus: isActive,
+        expirationDate: expirationDate || null,
+      });
+      closeDialog();
+    });
+  };
+
+  const handleDelete = (closeDialog: () => void) => {
+    startTransition(() => {
+      handleDeleteLink({
+        linkId,
+      });
+      closeDialog();
+    });
+  };
 
   return (
     <div className="flex items-center gap-x-2">
       <EditUrlDialog
         linkStatus={linkStatus}
-        renderConfirmActionButton={(isActive, closeDialog) => (
+        linkExpirationDate={linkExpirationDate}
+        renderConfirmActionButton={({
+          isActive,
+          expirationDate,
+          closeDialog,
+        }) => (
           <Button
             onClick={() =>
-              startTransition(() => {
-                handleEditLink({ linkId, linkStatus: isActive });
-
-                closeDialog();
+              handleEdit({
+                isActive,
+                expirationDate,
+                closeDialog,
               })
             }
             disabled={isPending}
@@ -64,15 +99,7 @@ export const Actions = ({ linkId, linkStatus }: ActionsProps) => {
         renderConfirmActionButton={closeDialog => (
           <Button
             variant="destructive"
-            onClick={() =>
-              startTransition(() => {
-                handleDeleteLink({
-                  linkId,
-                });
-
-                closeDialog();
-              })
-            }
+            onClick={() => handleDelete(closeDialog)}
             disabled={isPending}
           >
             {isPending ? <LoadingDots /> : 'Delete'}

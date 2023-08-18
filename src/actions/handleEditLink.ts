@@ -8,11 +8,13 @@ import prismaDb from '@/lib/prismaDb';
 type HandleEditLinkProps = {
   linkId: string;
   linkStatus: boolean;
+  expirationDate: Date | null;
 };
 
 export const handleEditLink = async ({
   linkId,
   linkStatus,
+  expirationDate,
 }: HandleEditLinkProps) => {
   const { userId } = auth();
 
@@ -33,6 +35,7 @@ export const handleEditLink = async ({
     },
     data: {
       isActive: linkStatus,
+      expirationDate,
     },
   });
 
