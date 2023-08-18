@@ -11,14 +11,16 @@ datasource db {
 }
 
 model LongUrl {
-  id          String   @id
-  userId      String?
-  originalUrl String   @db.Text()
-  shortUrl    String   @unique
-  clicks      Int      @default(0)
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id             String    @id
+  userId         String?
+  originalUrl    String    @db.Text()
+  shortUrl       String    @unique
+  clicks         Int       @default(0)
+  isActive       Boolean   @default(true)
+  expirationDate DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
   @@unique([userId, originalUrl(length: 500)])
+  @@index(userId)
 }
