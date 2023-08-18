@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { PencilIcon } from 'lucide-react';
+import { CalendarIcon, PencilIcon } from 'lucide-react';
+
+import { formatDate } from '@/lib/utils';
 
 import {
   Dialog,
@@ -12,24 +14,47 @@ import {
 } from '@/components/ui/dialog';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { Calendar } from '@/components/ui/calendar';
+
+export type ConfirmationButtonProps = {
+  isActive: boolean;
+  expirationDate: Date | undefined;
+  closeDialog: () => void;
+};
 
 type EditUrlDialogProps = {
-  renderConfirmActionButton: (
-    isActive: boolean,
-    closeDialog: () => void,
-  ) => React.ReactNode;
+  renderConfirmActionButton: ({
+    isActive,
+    expirationDate,
+    closeDialog,
+  }: ConfirmationButtonProps) => React.ReactNode;
   linkStatus: boolean;
+  linkExpirationDate: Date | undefined;
 };
 
 export const EditUrlDialog = ({
   renderConfirmActionButton,
   linkStatus,
+  linkExpirationDate,
 }: EditUrlDialogProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isActive, setIsActive] = useState(linkStatus);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    linkExpirationDate,
+  );
 
   const toggleLinkStatus = () => {
     setIsActive(prev => !prev);
+  };
+
+  const selectDate = (date: Date | undefined) => {
+    setSelectedDate(date);
   };
 
   const closeDialog = () => {
@@ -49,15 +74,17 @@ export const EditUrlDialog = ({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="mb-2">Edit link</DialogTitle>
+          <DialogTitle className="mb-2 text-base md:text-lg">
+            Edit link
+          </DialogTitle>
           <DialogDescription>
             Make changes to your url here. Click save when you&apos;re done
           </DialogDescription>
         </DialogHeader>
 
-        <div className="py-4">
+        <div className="flex flex-col gap-y-3 py-4">
           <div className="flex items-center gap-x-2">
-            <span>Link status: </span>
+            <span className="text-sm md:text-base">Link status: </span>
 
             <Switch
               id="isLinkActive"
@@ -69,10 +96,44 @@ export const EditUrlDialog = ({
               {isActive ? 'Active' : 'Inactive'}
             </Label>
           </div>
+
+          <div className="flex items-center gap-x-2">
+            <span className="text-sm md:text-base">Expiration Date: </span>
+
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline" className="flex items-center gap-x-2">
+                  {selectedDate ? (
+                    formatDate(selectedDate)
+                  ) : (
+                    <>
+                      Pick a date <CalendarIcon className="h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </PopoverTrigger>
+
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={selectedDate}
+                  onSelect={selectDate}
+                  disabled={date => date < new Date()}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
         </div>
 
         <DialogFooter>
-          <div>{renderConfirmActionButton(isActive, closeDialog)}</div>
+          <div>
+            {renderConfirmActionButton({
+              isActive,
+              expirationDate: selectedDate,
+              closeDialog,
+            })}
+          </div>
         </DialogFooter>
       </DialogContent>
     </Dialog>
