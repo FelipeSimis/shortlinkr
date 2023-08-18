@@ -1,0 +1,6 @@
+{
+  "crons": [{
+    "path": "/api/cron/check-expired-urls",
+    "schedule": "10 0 * * *"
+  }]
+}
