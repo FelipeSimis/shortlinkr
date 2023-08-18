@@ -37,7 +37,7 @@ export const DeleteUrlDialog = ({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="mb-2">
+          <DialogTitle className="mb-2 text-base md:text-lg">
             Are you sure absolutely sure?
           </DialogTitle>
           <DialogDescription>
