@@ -35,7 +35,7 @@ export const handleEditLink = async ({
     },
     data: {
       isActive: linkStatus,
-      expirationDate: linkStatus ? null : expirationDate,
+      expirationDate,
     },
   });
 
