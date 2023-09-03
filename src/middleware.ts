@@ -1,7 +1,7 @@
 import { authMiddleware } from '@clerk/nextjs';
 
 export default authMiddleware({
-  publicRoutes: ['/', '/:urlId'],
+  publicRoutes: ['/', '/:urlId', '/api/cron/check-expired-urls'],
 });
 
 export const config = {
