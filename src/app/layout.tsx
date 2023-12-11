@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 
+import { cn } from '@/lib/utils';
+
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 
@@ -23,11 +25,13 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         baseTheme: dark,
       }}
     >
-      <html
-        lang="en"
-        className="scrollbar-thin scrollbar-thumb-scroll scrollbar-thumb-rounded-md"
-      >
-        <body className={inter.className}>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={cn(
+            'scrollbar-thin scrollbar-thumb-scroll scrollbar-thumb-rounded-md',
+            inter.className,
+          )}
+        >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="mx-auto h-full w-full max-w-[1600px] px-6 py-8 md:px-12">
               <Toaster />
