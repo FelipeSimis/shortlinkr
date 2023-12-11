@@ -13,9 +13,9 @@ type QRCodeProps = {
 };
 
 const QRCode = ({ value, width = 36, height = 36 }: QRCodeProps) => {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
-  const isDarkTheme = theme === 'dark';
+  const isDarkTheme = resolvedTheme === 'dark';
 
   const backgroundColor = isDarkTheme ? '#00000000' : '#ffffffff';
   const color = isDarkTheme ? '#C9CECD' : '#000000FF';
