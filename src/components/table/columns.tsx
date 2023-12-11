@@ -79,7 +79,7 @@ export const columns: ColumnDef<URLs>[] = [
           <QRCode value={row.getValue('shortUrl')} />
         </HoverCardTrigger>
 
-        <HoverCardContent>
+        <HoverCardContent className="w-fit">
           <QRCode value={row.getValue('shortUrl')} width={128} height={128} />
         </HoverCardContent>
       </HoverCard>
