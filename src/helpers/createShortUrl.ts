@@ -1,3 +1,5 @@
+import 'server-only';
+
 import prismaDb from '@/lib/prismaDb';
 import { generateShortUrl } from '@/lib/utils';
 

@@ -1,3 +1,5 @@
+import 'server-only';
+import { cache } from 'react';
 import { auth } from '@clerk/nextjs/server';
 
 import prismaDb from '@/lib/prismaDb';
@@ -8,29 +10,31 @@ type Props = {
   currentPage?: number;
 };
 
-export const getCurrentUserShortURLs = async ({ currentPage = 1 }: Props) => {
-  const { userId } = auth();
+export const getCurrentUserShortURLs = cache(
+  async ({ currentPage = 1 }: Props) => {
+    const { userId } = auth();
 
-  const [urls, totalUrls] = await prismaDb.$transaction([
-    prismaDb.longUrl.findMany({
-      where: {
-        userId,
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-      skip: (currentPage - 1) * ITEMS_PER_PAGE,
-      take: ITEMS_PER_PAGE,
-    }),
-    prismaDb.longUrl.count({
-      where: {
-        userId,
-      },
-    }),
-  ]);
+    const [urls, totalUrls] = await prismaDb.$transaction([
+      prismaDb.longUrl.findMany({
+        where: {
+          userId,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+        skip: (currentPage - 1) * ITEMS_PER_PAGE,
+        take: ITEMS_PER_PAGE,
+      }),
+      prismaDb.longUrl.count({
+        where: {
+          userId,
+        },
+      }),
+    ]);
 
-  return {
-    urls,
-    totalUrls,
-  };
-};
+    return {
+      urls,
+      totalUrls,
+    };
+  },
+);
