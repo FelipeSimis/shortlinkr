@@ -10,7 +10,12 @@ type PageParams = {
 };
 
 const UrlIdPage = async ({ params: { urlId } }: PageParams) => {
-  const { shortUrl, isActive, expirationDate } = await getUrlInfo(urlId);
+  const urlInfo = getUrlInfo(urlId);
+
+  const originalUrlPromise = increaseUrlClicks(urlId);
+
+  const [{ shortUrl, isActive, expirationDate }, originalUrl] =
+    await Promise.all([urlInfo, originalUrlPromise]);
 
   if (
     !shortUrl ||
@@ -19,8 +24,6 @@ const UrlIdPage = async ({ params: { urlId } }: PageParams) => {
   ) {
     return redirect('/');
   }
-
-  const originalUrl = await increaseUrlClicks(urlId);
 
   return redirect(originalUrl);
 };

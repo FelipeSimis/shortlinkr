@@ -11,7 +11,7 @@ type ShortUrlHistoryTableProps = {
   page: number;
 };
 
-export const revalidate = 60 * 60;
+// export const revalidate = 60 * 60;
 
 export const ShortUrlHistoryTable = async ({
   page,
