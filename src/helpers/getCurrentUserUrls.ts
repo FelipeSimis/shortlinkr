@@ -1,5 +1,5 @@
 import 'server-only';
-import { unstable_cache as cache } from 'next/cache';
+import { cache } from 'react';
 import { auth } from '@clerk/nextjs/server';
 
 import prismaDb from '@/lib/prismaDb';
