@@ -1,9 +1,8 @@
 import 'server-only';
-import { unstable_cache as cache } from 'next/cache';
 
 import prismaDb from '@/lib/prismaDb';
 
-export const increaseUrlClicks = cache(async (urlId: string) => {
+export const increaseUrlClicks = async (urlId: string) => {
   const { originalUrl } = await prismaDb.longUrl.update({
     where: {
       id: urlId,
@@ -19,4 +18,4 @@ export const increaseUrlClicks = cache(async (urlId: string) => {
   });
 
   return originalUrl;
-});
+};
