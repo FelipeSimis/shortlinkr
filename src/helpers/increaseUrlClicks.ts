@@ -1,4 +1,5 @@
 import 'server-only';
+import { revalidateTag } from 'next/cache';
 
 import prismaDb from '@/lib/prismaDb';
 
@@ -16,6 +17,8 @@ export const increaseUrlClicks = async (urlId: string) => {
       originalUrl: true,
     },
   });
+
+  revalidateTag('current-user-urls');
 
   return originalUrl;
 };

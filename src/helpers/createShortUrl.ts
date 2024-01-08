@@ -1,4 +1,5 @@
 import 'server-only';
+import { revalidateTag } from 'next/cache';
 
 import prismaDb from '@/lib/prismaDb';
 import { generateShortUrl } from '@/lib/utils';
@@ -18,6 +19,8 @@ export const createShortUrl = async (userId: string, url: string) => {
         shortUrl: true,
       },
     });
+
+    revalidateTag('current-user-urls');
 
     return data;
   } catch (error) {
