@@ -17,6 +17,7 @@ export const CopyButton = ({ value }: CopyButtonProps) => {
       await navigator.clipboard.writeText(value);
     } catch (error) {
       return toast({
+        variant: 'destructive',
         title: 'Error',
         description: 'Failed to copy to clipboard',
       });
