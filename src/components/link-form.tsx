@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@clerk/nextjs';
+import { useAuth, useClerk } from '@clerk/nextjs';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowRight, Link as LinkIcon } from 'lucide-react';
@@ -29,7 +29,9 @@ export const LinkForm = () => {
 
   const { isSignedIn } = useAuth();
 
-  const { push, refresh } = useRouter();
+  const { openSignIn } = useClerk();
+
+  const { refresh } = useRouter();
 
   const { toast } = useToast();
 
@@ -43,7 +45,7 @@ export const LinkForm = () => {
   const onSubmit = async (values: LinkData) => {
     try {
       if (!isSignedIn) {
-        push('/sign-in');
+        openSignIn();
 
         return;
       }
