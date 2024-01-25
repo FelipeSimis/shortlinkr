@@ -63,7 +63,7 @@ export const columns: ColumnDef<URLs>[] = [
           alt="Website logo"
           width={32}
           height={32}
-          className="rounded-sm"
+          className="shrink-0 rounded-sm object-cover"
         />
 
         <span className="truncate">{row.getValue('originalUrl')}</span>
@@ -105,17 +105,17 @@ export const columns: ColumnDef<URLs>[] = [
     header: 'Status',
     cell: ({ row }) =>
       row.getValue('isActive') ? (
-        <div className="flex items-center gap-x-2 text-[#1EB036]">
+        <div className="flex items-center gap-x-1 text-[#1EB036]">
           Active
-          <div className="flex h-9 w-9  items-center justify-center rounded-full bg-[#1EB036]/20 p-0">
-            <Link2Icon className="text-foreground" />
+          <div className="ml-auto flex h-9  w-9 items-center justify-center rounded-full bg-[#1EB036]/20 p-0">
+            <Link2Icon className="h-5 w-5 text-foreground" />
           </div>
         </div>
       ) : (
-        <div className="flex items-center gap-x-2 text-[#B0901E]">
+        <div className="flex items-center gap-x-1 text-[#B0901E]">
           Inactive
-          <div className="flex h-9 w-9  items-center justify-center rounded-full bg-[#B0901E]/20 p-0">
-            <Link2OffIcon className="text-[#B0901E]" />
+          <div className="ml-auto flex h-9  w-9 items-center justify-center rounded-full bg-[#B0901E]/20 p-0">
+            <Link2OffIcon className="h-5 w-5 text-[#B0901E]" />
           </div>
         </div>
       ),

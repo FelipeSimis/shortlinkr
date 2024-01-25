@@ -41,7 +41,7 @@ body,
 
     --radius: 0.5rem;
 
-    --brand-primary-blue: 223 70% 70%;
+    --brand-primary-blue: 223 80% 52%;
     --brand-primary-pink: 337 79% 63%;
     --scroll: 213 27% 84%;
   }
@@ -50,7 +50,7 @@ body,
     --background: 222.2 84% 4.9%;
     --foreground: 168 5% 80%;
 
-    --muted: 217.2 32.6% 17.5%;
+    --muted: 219 26% 13%;
     --muted-foreground: 215 20.2% 65.1%;
 
     --popover: 222.2 84% 4.9%;
@@ -63,7 +63,7 @@ body,
     --input: 217.2 32.6% 17.5%;
 
     --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary-foreground: 168 5% 80%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -78,7 +78,6 @@ body,
 
     --brand-primary-blue: 223 86% 48%;
     --brand-primary-pink: 337 79% 63%;
-    --gray-blue: 219 26% 13%;
     --scroll: 219 38% 18%;
   }
 }

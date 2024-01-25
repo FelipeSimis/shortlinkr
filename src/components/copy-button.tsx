@@ -35,7 +35,7 @@ export const CopyButton = ({ value }: CopyButtonProps) => {
       aria-label="Copy link"
       title="Copy link"
     >
-      <CopyIcon className="h-4 w-4" />
+      <CopyIcon className="h-4 w-4 stroke-foreground" />
     </Button>
   );
 };

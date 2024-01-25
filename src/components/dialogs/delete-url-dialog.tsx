@@ -28,7 +28,7 @@ export const DeleteUrlDialog = ({
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger>
         <div
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-input bg-gray-blue p-0 hover:bg-gray-blue/80 hover:text-accent-foreground"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-input bg-muted p-0 hover:bg-muted/80 hover:text-accent-foreground"
           aria-label="Delete link"
           title="Delete link"
         >

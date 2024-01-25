@@ -67,7 +67,7 @@ export const DataTable = <TData, TValue>({
     <div>
       <div className="overflow-hidden rounded-md border">
         <Table>
-          <TableHeader className="h-16 rounded-e-lg bg-gray-blue">
+          <TableHeader className="h-16 rounded-e-lg bg-muted">
             {table.getHeaderGroups().map(headerGroup => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map(header => {
@@ -89,7 +89,7 @@ export const DataTable = <TData, TValue>({
             ))}
           </TableHeader>
 
-          <TableBody className="bg-gray-blue/50">
+          <TableBody className="bg-muted/50">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map(row => (
                 <TableRow
